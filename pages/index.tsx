@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { MainLayout } from '@md-modules/shared/layouts/main';
-import { AllGadgetsContainer } from '@md-gs-all-gadgets/index';
+import { AllGadgetsPresentation } from '@md-modules/gadget-shop/all-gadgets/layers/presentation';
 
-const PersonPage = () => {
+const AllGadgetsPage = () => {
   return (
     <MainLayout>
-      <AllGadgetsContainer />
+      <AllGadgetsPresentation />
     </MainLayout>
   );
 };
 
-export default PersonPage;
+export default AllGadgetsPage;

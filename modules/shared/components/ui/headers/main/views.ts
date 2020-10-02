@@ -15,4 +15,6 @@ export const LWrapper = styled.div`
   padding-bottom: 15px;
 `;
 
-export const RWrapper = styled.div``;
+export const RWrapper = styled.div`
+  cursor: pointer;
+`;
