@@ -19,7 +19,7 @@ const GadgetAPIContext = React.createContext<Context>({
 const GadgetAPIContextProvider: React.FC = ({ children }) => {
   const { query } = useRouter();
 
-  const { data, loading } = useQuery(allGadgets.find(({ id }) => id === query.id));
+  const { data, loading } = useQuery(allGadgets.find(({ id }) => id.toString() === query.id));
 
   return (
     <GadgetAPIContext.Provider

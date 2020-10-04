@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { AllGadgetsBLContext } from '@md-modules/gadget-shop/all-gadgets/layers/business';
-import ShoppingCartTable from '@md-modules/gadget-shop/cart/components/shopping-cart-table';
+import ShoppingCartTable from '../shopping-cart/shopping-cart-table';
 import { CartWrapper, CloseButton, YC } from './view';
 
 const customStyles = {

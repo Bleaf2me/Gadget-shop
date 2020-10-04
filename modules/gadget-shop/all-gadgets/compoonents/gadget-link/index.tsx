@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 interface Props {
-  gId: string;
+  gId: number;
 }
 
 const GadgetLink: React.FC<Props> = ({ gId, children }) => (

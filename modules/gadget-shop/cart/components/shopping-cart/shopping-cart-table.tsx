@@ -4,7 +4,12 @@ import { AllGadgetsBLContext } from '@md-modules/gadget-shop/all-gadgets/layers/
 import { CartItem } from '@md-modules/gadget-shop/all-gadgets/layers/business/reducers';
 import { AddButton, RemoveButton, DeleteButton, TableH, Table, TD, TR, TB } from './view';
 
-const ShoppingCartTable = ({ closeModal, total }: any) => {
+interface SCProps {
+  closeModal: () => void;
+  total: number;
+}
+
+const ShoppingCartTable: React.FC<SCProps> = ({ closeModal, total }) => {
   const context = React.useContext(AllGadgetsBLContext);
 
   const { shoppingCart, onAddedToCart, onRemoveGadget, onDeleteGadget } = context;

@@ -2,10 +2,10 @@ import * as React from 'react';
 import { GadgetAPIContext } from '@md-gs-gadget/layers/api/gadget';
 
 interface GadgetInfo {
-  id: string;
+  id: number;
   coverImage: string;
   title: string;
-  price: string;
+  price: number;
 }
 
 interface Context {
@@ -13,12 +13,7 @@ interface Context {
 }
 
 const GadgetBLContext = React.createContext<Context>({
-  gadgetInfo: {
-    id: '',
-    coverImage: '',
-    title: '',
-    price: ''
-  }
+  gadgetInfo: {} as GadgetInfo
 });
 
 const GadgetBLContextProvider: React.FC = ({ children }) => {
@@ -27,12 +22,7 @@ const GadgetBLContextProvider: React.FC = ({ children }) => {
 
   const gadgetInfo = React.useMemo<GadgetInfo>(() => {
     if (!gadget) {
-      return {
-        id: '',
-        coverImage: '',
-        title: '',
-        price: ''
-      };
+      return {} as GadgetInfo;
     }
 
     return { id: gadget.id, coverImage: gadget.coverImage, title: gadget.title, price: gadget.price };

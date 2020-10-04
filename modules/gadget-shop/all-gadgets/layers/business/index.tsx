@@ -3,23 +3,17 @@ import * as React from 'react';
 import { AllGadgetsAPIContext } from '@md-gs-all-gadgets/layers/api/all-gadgets';
 // mock
 import { Gadget } from '@md-modules/shared/mock';
-import { updateShoppingCart, CartItem } from './reducers';
+import { updateShoppingCart, CartItem, Action, ReducerState } from './reducers';
 
 interface Context {
-  gadgetList: Pick<Gadget, 'id' | 'title' | 'price' | 'coverImage'>[];
+  gadgetList: Gadget[];
   shoppingCart: CartItem[];
-  onAddedToCart(gadgetId: string): any;
-  onDeleteGadget(gadgetId: string): any;
-  onRemoveGadget(gadgetId: string): any;
+  onAddedToCart(gadgetId: number): void;
+  onDeleteGadget(gadgetId: number): void;
+  onRemoveGadget(gadgetId: number): void;
 }
 
-const AllGadgetsBLContext = React.createContext<Context>({
-  gadgetList: [],
-  shoppingCart: [],
-  onAddedToCart() {},
-  onDeleteGadget() {},
-  onRemoveGadget() {}
-});
+const AllGadgetsBLContext = React.createContext<Context>({} as Context);
 
 const AllGadgetsBLContextProvider: React.FC = ({ children }) => {
   const { allGadgets } = React.useContext(AllGadgetsAPIContext);
@@ -38,26 +32,26 @@ const AllGadgetsBLContextProvider: React.FC = ({ children }) => {
 
   const initialState = [
     {
-      id: '1',
+      id: 1,
       title: 'Microphone',
-      price: '32',
+      price: 32,
       coverImage: 'https://images-na.ssl-images-amazon.com/images/I/61y99KRMiPL._AC_SL1000_.jpg'
     },
     {
-      id: '2',
+      id: 2,
       title: 'Headphones',
-      price: '45',
+      price: 45,
       coverImage: 'https://images-na.ssl-images-amazon.com/images/I/71o8Q5XJS5L._AC_SL1500_.jpg'
     },
     {
-      id: '3',
+      id: 3,
       title: 'Mouse',
-      price: '80',
+      price: 80,
       coverImage: 'https://images-na.ssl-images-amazon.com/images/I/81A11OxpgXL._AC_SL1500_.jpg'
     }
   ];
 
-  const [shCart, dispatch] = React.useReducer(updateShoppingCart, {
+  const [shCart, dispatch] = React.useReducer<React.Reducer<ReducerState, Action>>(updateShoppingCart, {
     gadgetList: initialState,
     shoppingCart: []
   });
@@ -75,21 +69,21 @@ const AllGadgetsBLContextProvider: React.FC = ({ children }) => {
     localStorage.setItem('cart', data);
   }, [shCart]);
 
-  const onAddedToCart = (gadgetId: string) => {
+  const onAddedToCart = (gadgetId: number) => {
     dispatch({
       type: 'GADGET_ADDED_TO_CART',
       gadgetId: gadgetId
     });
   };
 
-  const onDeleteGadget = (gadgetId: string) => {
+  const onDeleteGadget = (gadgetId: number) => {
     dispatch({
       type: 'GADGET_DELETED',
       gadgetId: gadgetId
     });
   };
 
-  const onRemoveGadget = (gadgetId: string) => {
+  const onRemoveGadget = (gadgetId: number) => {
     dispatch({
       type: 'GADGET_REMOVED',
       gadgetId: gadgetId

@@ -14,11 +14,11 @@ import {
 import { GadgetLink } from '../gadget-link';
 
 interface Props {
-  id: string;
+  id: number;
   name: string;
-  price: string;
+  price: number;
   coverImage: string;
-  onAddedToCart: any;
+  onAddedToCart: () => void;
 }
 
 const Card: React.FC<Props> = ({ id, name, price, coverImage, onAddedToCart }) => {
